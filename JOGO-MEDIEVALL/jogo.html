@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JOGO MEDIEVAL</title>
+</head>
+
+<body>
+  <div id="gameContainer">
+    <button id="fullscreenBtn">Tela Cheia</button>
+
+    <canvas></canvas>
+  </div>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      background: black;
+      overflow: hidden;
+    }
+
+    button {
+      margin-bottom: 15px;
+      padding: 10px 20px;
+      margin-left: 400px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    canvas {
+      display: block;
+    }
+  </style>
+  <canvas></canvas>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"
+    integrity="sha512-Mf/xUqfWvDIr+1B6zfnIDIiG7XHzyP/guXUWgV6PgaQoIFeXkJQR5XWh9fqAiCiRCpemabt3naV4jhDWVnuYDQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+    const btn = document.getElementById('fullscreenBtn')
+    const gameContainer = document.getElementById('gameContainer')
+
+    btn.addEventListener('click', () => {
+
+      if (!document.fullscreenElement) {
+        const canvas = document.querySelector('canvas')
+
+        btn.addEventListener('click', () => {
+
+          if (!document.fullscreenElement) {
+            canvas.requestFullscreen()
+          } else {
+            document.exitFullscreen()
+          }
+
+        })
+      } else {
+        document.exitFullscreen()
+      }
+
+    })
+  </script>
+
+
+  <script src="js/utils.js"></script>
+  <script src="js/data/collisions.js"></script>
+  <script src="js/classes/CollisionBlock.js"></script>
+  <script src="js/classes/Sprite.js"></script>
+  <script src="js/classes/Player.js"></script>
+  <script src="js/eventListeners.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>
