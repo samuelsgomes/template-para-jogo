@@ -1,18 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>JOGO MEDIEVAL</title>
-</head>
 
-<body>
-  <div id="gameContainer">
-    <button id="fullscreenBtn">Tela Cheia</button>
-
-    <canvas></canvas>
-  </div>
   <style>
     * {
       margin: 0;
@@ -21,36 +15,71 @@
     }
 
     body {
-      margin: 0;
       width: 100vw;
       height: 100vh;
 
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
 
       background: black;
       overflow: hidden;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    button {
-      margin-bottom: 15px;
+    #gameContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    #fullscreenBtn {
       padding: 10px 20px;
-      margin-left: 400px;
-      font-size: 18px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: white;
       cursor: pointer;
+      transition: 0.2s;
+    }
+
+    #fullscreenBtn:hover {
+      transform: scale(1.05);
     }
 
     canvas {
       display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 768px) {
+      #fullscreenBtn {
+        width: 90%;
+        font-size: 15px;
+      }
+
+      canvas {
+        width: 100%;
+      }
     }
   </style>
-  <canvas></canvas>
+</head>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"
-    integrity="sha512-Mf/xUqfWvDIr+1B6zfnIDIiG7XHzyP/guXUWgV6PgaQoIFeXkJQR5XWh9fqAiCiRCpemabt3naV4jhDWVnuYDQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<body>
+
+  <div id="gameContainer">
+
+    <button id="fullscreenBtn">
+      Tela Cheia
+    </button>
+
+    <canvas></canvas>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
 
   <script>
     const btn = document.getElementById('fullscreenBtn')
@@ -59,17 +88,7 @@
     btn.addEventListener('click', () => {
 
       if (!document.fullscreenElement) {
-        const canvas = document.querySelector('canvas')
-
-        btn.addEventListener('click', () => {
-
-          if (!document.fullscreenElement) {
-            canvas.requestFullscreen()
-          } else {
-            document.exitFullscreen()
-          }
-
-        })
+        gameContainer.requestFullscreen()
       } else {
         document.exitFullscreen()
       }
@@ -77,14 +96,14 @@
     })
   </script>
 
-
-  <script src="/utils.js"></script>
-  <script src="/data/collisions.js"></script>
-  <script src="/classes/CollisionBlock.js"></script>
-  <script src="/classes/Sprite.js"></script>
-  <script src="/classes/Player.js"></script>
-  <script src="/eventListeners.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="data/collisions.js"></script>
+  <script src="js/classes/CollisionBlock.js"></script>
+  <script src="js/classes/sprite.js"></script>
+  <script src="js/classes/player.js"></script>
+  <script src="js/eventListeners.js"></script>
   <script src="index.js"></script>
+
 </body>
 
 </html>
